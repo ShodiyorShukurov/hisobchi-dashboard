@@ -26,7 +26,10 @@ const ImagePage = () => {
       );
       const data = await response.json();
       getImage(data.token);
-    } catch (error) {}
+    } catch (error) {
+      console.error('Error during login:', error);
+      setLoading(false);
+    }
   };
 
   const getImage = async (token: string) => {

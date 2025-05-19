@@ -1,1 +1,17 @@
 @import "tailwindcss";
+
+.inter-font {
+  font-family: "Inter", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+
+body {
+  @apply bg-[#FAFAFB] text-gray-900 w-full h-full font-[inter] text-base;
+}
+
+.container {
+  @apply mx-auto px-4 w-full max-w-[500px];
+}

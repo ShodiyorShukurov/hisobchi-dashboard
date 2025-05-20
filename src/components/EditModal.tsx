@@ -135,37 +135,7 @@ const EditTransactionModal = ({
         </div>
 
         {/* Tur */}
-        <div className="flex items-center gap-2 mb-4">
-          {/* <label className="flex items-center gap-2">
-            <input
-              type="radio"
-              name="type"
-              value="kirim"
-              checked={type === 'kirim'}
-              onChange={() => setType('kirim')}
-            />
-            Kirim
-          </label>
-          <label className="flex items-center gap-2">
-            <input
-              type="radio"
-              name="type"
-              value="chiqim"
-              checked={type === 'chiqim'}
-              onChange={() => setType('chiqim')}
-            />
-            Chiqim
-          </label>
-          <label className="flex items-center gap-2">
-            <input
-              type="radio"
-              name="type"
-              value="qarz"
-              checked={type === 'qarz'}
-              onChange={() => setType('qarz')}
-            />
-            Qarz
-          </label> */}
+        <div className="flex items-center justify-center gap-2 mb-4">
           <div
             className={`flex items-center gap-2 ${
               type == 'kirim' ? 'text-[#171725]' : 'text-[#92929D]'

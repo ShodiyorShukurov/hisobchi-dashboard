@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Balans from '../components/Balans';
 import Cards from '../components/Cards';
 import SelectMonth from '../components/SelectMonth';
@@ -7,6 +7,7 @@ import Dashboard from '../layout/Dashboard';
 import DeleteModal from '../components/DeleteModal';
 import EditTransactionModal from '../components/EditModal';
 import DatePickerModal from '../components/DataPicker';
+import useDashboard from '../hooks/useDashboard';
 
 const DashboardPage = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,7 +15,26 @@ const DashboardPage = () => {
   const [isOpenEdit, setIsOpenEdit] = useState(false);
 
   const [isDateOpen, setDateIsOpen] = useState(false);
-  const [date, setDate] = useState<Date | undefined>(new Date(2025, 4, 21));
+
+  const { selectedData, setSelectedData } = useDashboard();
+  const parseDate = (dateString: string): Date | undefined => {
+  const [day, month, year] = dateString.split('.');
+  if (!day || !month || !year) return undefined;
+
+  return new Date(Number(year), Number(month) - 1, Number(day));
+};
+
+const [date, setDate] = useState<Date | undefined>(
+  selectedData?.date ? parseDate(selectedData.date) : undefined
+);
+
+useEffect(() => {
+  if (selectedData?.date) {
+    setDate(parseDate(selectedData.date));
+  }
+}, [selectedData]);
+
+console.log("Selected data:", selectedData);
 
   const handleSave = (data: any) => {
     console.log("Saqlangan ma'lumot:", data);
@@ -43,6 +63,7 @@ const DashboardPage = () => {
       <Cards
         openModal={() => setIsOpen(true)}
         openEditModal={() => setIsOpenEdit(true)}
+        setSelectedData={setSelectedData}
       />
 
       <DeleteModal
@@ -57,6 +78,7 @@ const DashboardPage = () => {
         onSave={handleSave}
         onDateClick={() => setDateIsOpen(true)}
         date={date}
+        selectedData={selectedData}
       />
 
       <DatePickerModal

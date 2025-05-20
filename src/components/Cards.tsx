@@ -38,11 +38,12 @@ const mockData = [
 interface CardsProps {
   openModal: () => void;
   openEditModal: () => void;
-
+  setSelectedData: (data: any) => void;
 }
 
-const Cards = ({ openModal, openEditModal }: CardsProps) => {
+const Cards = ({ openModal, openEditModal, setSelectedData }: CardsProps) => {
   const [checkedId, setCheckedId] = useState<number | null>(null);
+
 
   return (
     <ul className="mt-4 flex flex-col gap-3">
@@ -66,14 +67,21 @@ const Cards = ({ openModal, openEditModal }: CardsProps) => {
               <button
                 style={{ boxShadow: '0px 8px 8px 0px rgba(0, 0, 0, 0.16)' }}
                 className="bg-[#006FFD] rounded-[6px] p-2"
-                onClick={openEditModal}
+                onClick={() => {
+                  setSelectedData(item);
+                  openEditModal();
+                  setCheckedId(null);
+                }}
               >
                 <img src={edit} alt="edit" className="w-[24px] h-[24px]" />
               </button>
               <button
                 style={{ boxShadow: '0px 8px 8px 0px rgba(0, 0, 0, 0.16)' }}
                 className="bg-[#FC5A5A] rounded-[6px] p-2"
-                onClick={()=>{openModal(); setCheckedId(null)}}
+                onClick={() => {
+                  openModal();
+                  setCheckedId(null);
+                }}
               >
                 <img
                   src={deleteIcon}

@@ -16,6 +16,7 @@ type Props = {
   }) => void;
   onDateClick: () => void;
   date: Date | undefined;
+  selectedData: any;
 };
 
 const categories = ['Qarz oldim', 'Ish haqi', "To'lov", 'Shopping'];
@@ -25,23 +26,44 @@ const EditTransactionModal = ({
   onClose,
   onSave,
   onDateClick,
-  date
+  date,
+  selectedData,
 }: Props) => {
-  const [category, setCategory] = useState('Qarz oldim');
-  const [detail, setDetail] = useState('');
-  const [amount, setAmount] = useState('');
-  const [currency, setCurrency] = useState<'UZS' | 'USD'>('UZS');
-  const [type, setType] = useState<TransactionType>('qarz');
-
   if (!isOpen) return null;
 
+  const [category, setCategory] = useState('Qarz oldim');
+  const [detail, setDetail] = useState(
+    selectedData ? selectedData.description : ''
+  );
+  const [amount, setAmount] = useState(
+    selectedData ? selectedData.amount.slice(1) : ''
+  );
+  const [currency, setCurrency] = useState<'UZS' | 'USD'>('UZS');
+  const [type, setType] = useState<TransactionType>(
+    selectedData?.amount?.slice(0, 1) == '+'
+      ? 'kirim'
+      : selectedData?.amount?.slice(0, 1) == '-'
+      ? 'chiqim'
+      : 'qarz'
+  );
+
   const handleSave = () => {
-    onSave({ category, detail, amount, currency, date: date ? date.toISOString() : '', type });
+    onSave({
+      category,
+      detail,
+      amount,
+      currency,
+      date: date ? date.toISOString() : '',
+      type,
+    });
     onClose();
   };
 
   return (
-    <div className="fixed inset-0 bg-[#0000001F] flex items-center justify-center z-50 backdrop-blur-[2px]">
+    <div
+      className="fixed inset-0 bg-[#0000001F] flex items-center justify-center z-50 backdrop-blur-[2px]"
+      onClick={onClose}
+    >
       <div
         className="bg-white rounded-[16px] p-4 w-[90%] max-w-md"
         onClick={(e) => e.stopPropagation()}
@@ -113,8 +135,8 @@ const EditTransactionModal = ({
         </div>
 
         {/* Tur */}
-        <div className="flex justify-between text-sm mb-6">
-          <label className="flex items-center gap-2">
+        <div className="flex items-center gap-2 mb-4">
+          {/* <label className="flex items-center gap-2">
             <input
               type="radio"
               name="type"
@@ -143,10 +165,68 @@ const EditTransactionModal = ({
               onChange={() => setType('qarz')}
             />
             Qarz
-          </label>
+          </label> */}
+          <div
+            className={`flex items-center gap-2 ${
+              type == 'kirim' ? 'text-[#171725]' : 'text-[#92929D]'
+            } text-[12px] font-bold px-4 py-3`}
+            onClick={() => setType('kirim')}
+          >
+            <div
+              className={`${
+                type == 'kirim'
+                  ? 'border-none bg-[#006FFD]'
+                  : 'border-[#92929D] border-[1.5px]'
+              } w-[12px] h-[12px] rounded-full flex items-center justify-center`}
+            >
+              {type == 'kirim' && (
+                <div className="bg-[#fff] w-[3.5px] h-[3.5px] rounded-full"></div>
+              )}
+            </div>
+            Kirim
+          </div>
+
+          <div
+            className={`flex items-center gap-2 ${
+              type == 'chiqim' ? 'text-[#171725]' : 'text-[#92929D]'
+            } text-[12px] font-bold px-4 py-3`}
+            onClick={() => setType('chiqim')}
+          >
+            <div
+              className={`${
+                type == 'chiqim'
+                  ? 'border-none bg-[#006FFD]'
+                  : 'border-[#92929D] border-[1.5px]'
+              } w-[12px] h-[12px] rounded-full flex items-center justify-center`}
+            >
+              {type == 'chiqim' && (
+                <div className="bg-[#fff] w-[3.5px] h-[3.5px] rounded-full"></div>
+              )}
+            </div>
+            Chiqim
+          </div>
+
+          <div
+            className={`flex items-center gap-2 ${
+              type == 'qarz' ? 'text-[#171725]' : 'text-[#92929D]'
+            } text-[12px] font-bold px-4 py-3`}
+            onClick={() => setType('qarz')}
+          >
+            <div
+              className={`${
+                type == 'qarz'
+                  ? 'border-none bg-[#006FFD]'
+                  : 'border-[#92929D] border-[1.5px]'
+              } w-[12px] h-[12px] rounded-full flex items-center justify-center`}
+            >
+              {type == 'qarz' && (
+                <div className="bg-[#fff] w-[3.5px] h-[3.5px] rounded-full"></div>
+              )}
+            </div>
+            Qarz
+          </div>
         </div>
 
-        {/* Tugmalar */}
         <div className="flex gap-2">
           <button
             onClick={onClose}

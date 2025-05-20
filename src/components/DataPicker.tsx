@@ -6,7 +6,7 @@ type Props = {
   isOpen: boolean;
   onClose: () => void;
   onSelect: (date: Date | undefined) => void;
-    date: Date | undefined;
+  date: Date | undefined;
 };
 
 const DatePickerModal = ({ isOpen, onClose, onSelect, date }: Props) => {
@@ -38,14 +38,13 @@ const DatePickerModal = ({ isOpen, onClose, onSelect, date }: Props) => {
             selected: `bg-[#006FFD] border text-white rounded-full`,
             chevron: 'text-[#8F9098]',
           }}
-
           footer={
             selected ? (
               <div className="flex justify-between items-center mt-4">
                 <button
                   onClick={() => {
-                    setSelected(undefined);
-                    onSelect(undefined);
+                    onSelect(new Date(2025, 4, 21));
+                    onClose();
                   }}
                   className="text-[#006FFD] text-[12px] font-semibold"
                 >

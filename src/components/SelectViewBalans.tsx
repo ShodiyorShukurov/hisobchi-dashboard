@@ -20,7 +20,7 @@ const SelectViewBalans = () => {
         viewBox="0 0 1 11"
         fill="none"
       >
-        <path d="M0.5 0.5V10.5" stroke="#92929D" stroke-linecap="round" />
+        <path d="M0.5 0.5V10.5" stroke="#92929D" strokeLinecap="round" />
       </svg>
 
       <li
@@ -39,7 +39,7 @@ const SelectViewBalans = () => {
         viewBox="0 0 1 11"
         fill="none"
       >
-        <path d="M0.5 0.5V10.5" stroke="#92929D" stroke-linecap="round" />
+        <path d="M0.5 0.5V10.5" stroke="#92929D" strokeLinecap="round" />
       </svg>
 
       <li
@@ -58,7 +58,7 @@ const SelectViewBalans = () => {
         viewBox="0 0 1 11"
         fill="none"
       >
-        <path d="M0.5 0.5V10.5" stroke="#92929D" stroke-linecap="round" />
+        <path d="M0.5 0.5V10.5" stroke="#92929D" strokeLinecap="round" />
       </svg>
 
       <li

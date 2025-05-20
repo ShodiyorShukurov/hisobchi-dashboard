@@ -1,6 +1,9 @@
 import more from '../assets/more.svg';
 import img2 from '../assets/img.png';
+import edit from '../assets/edit.svg';
+import deleteIcon from '../assets/delete.svg';
 import { Image } from 'antd';
+import { useState } from 'react';
 
 const mockData = [
   {
@@ -32,12 +35,20 @@ const mockData = [
   },
 ];
 
-const Cards = () => {
+interface CardsProps {
+  openModal: () => void;
+  openEditModal: () => void;
+
+}
+
+const Cards = ({ openModal, openEditModal }: CardsProps) => {
+  const [checkedId, setCheckedId] = useState<number | null>(null);
+
   return (
     <ul className="mt-4 flex flex-col gap-3">
       {mockData.map((item) => (
         <li key={item.id} className="p-4 bg-[#fff] rounded-[16px]">
-          <div className="flex justify-between items-center">
+          <div className="flex justify-between items-center relative">
             <h3
               className={`${
                 item.amount.slice(0, 1) == '+'
@@ -47,18 +58,51 @@ const Cards = () => {
             >
               {item.amount}
             </h3>
-            <img src={more} alt="more" />
+            <div
+              className={`${
+                checkedId === item.id ? 'flex' : 'hidden'
+              } items-center justify-center flex-col gap-3 absolute top-[-30px] right-[40px]`}
+            >
+              <button
+                style={{ boxShadow: '0px 8px 8px 0px rgba(0, 0, 0, 0.16)' }}
+                className="bg-[#006FFD] rounded-[6px] p-2"
+                onClick={openEditModal}
+              >
+                <img src={edit} alt="edit" className="w-[24px] h-[24px]" />
+              </button>
+              <button
+                style={{ boxShadow: '0px 8px 8px 0px rgba(0, 0, 0, 0.16)' }}
+                className="bg-[#FC5A5A] rounded-[6px] p-2"
+                onClick={()=>{openModal(); setCheckedId(null)}}
+              >
+                <img
+                  src={deleteIcon}
+                  alt="edit"
+                  className="w-[24px] h-[24px]"
+                />
+              </button>
+            </div>
+
+            {/* Toggle qilish */}
+            <img
+              onClick={() =>
+                setCheckedId(checkedId === item.id ? null : item.id)
+              }
+              src={more}
+              alt="more"
+              className="cursor-pointer"
+            />
           </div>
+
           <div className={`${item.img ? 'flex items-center gap-3' : ''}  mt-3`}>
-            {item.img ? (
+            {item.img && (
               <Image src={item.img} alt="" className="w-[40px] h-[40px]" />
-            ) : (
-              ''
             )}
             <p className="text-[#1F2024] font-medium leading-[160%] text-[14px]">
               {item.description}
             </p>
           </div>
+
           <p className="text-[#71727A] font-medium leading-[16px] text-[14px] mt-3">
             {item.date}
           </p>

@@ -46,7 +46,7 @@ const Cards = ({ openModal, openEditModal, setSelectedData }: CardsProps) => {
 
 
   return (
-    <ul className="mt-4 flex flex-col gap-3">
+    <ul className="mt-4 flex flex-col gap-3 mb-6">
       {mockData.map((item) => (
         <li key={item.id} className="p-4 bg-[#fff] rounded-[16px]">
           <div className="flex justify-between items-center relative">

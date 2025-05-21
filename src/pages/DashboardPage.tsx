@@ -8,33 +8,36 @@ import DeleteModal from '../components/DeleteModal';
 import EditTransactionModal from '../components/EditModal';
 import DatePickerModal from '../components/DataPicker';
 import useDashboard from '../hooks/useDashboard';
+import { useParams } from 'react-router-dom';
 
 const DashboardPage = () => {
+  const { id } = useParams();
+
+  const { selectedData, setSelectedData, typesDashboard, setTypesDashboard, userBalance } =
+    useDashboard(id ? { id } : { id: '' });
+
   const [isOpen, setIsOpen] = useState(false);
 
   const [isOpenEdit, setIsOpenEdit] = useState(false);
 
   const [isDateOpen, setDateIsOpen] = useState(false);
 
-  const { selectedData, setSelectedData } = useDashboard();
   const parseDate = (dateString: string): Date | undefined => {
-  const [day, month, year] = dateString.split('.');
-  if (!day || !month || !year) return undefined;
+    const [day, month, year] = dateString.split('.');
+    if (!day || !month || !year) return undefined;
 
-  return new Date(Number(year), Number(month) - 1, Number(day));
-};
+    return new Date(Number(year), Number(month) - 1, Number(day));
+  };
 
-const [date, setDate] = useState<Date | undefined>(
-  selectedData?.date ? parseDate(selectedData.date) : undefined
-);
+  const [date, setDate] = useState<Date | undefined>(
+    selectedData?.date ? parseDate(selectedData.date) : undefined
+  );
 
-useEffect(() => {
-  if (selectedData?.date) {
-    setDate(parseDate(selectedData.date));
-  }
-}, [selectedData]);
-
-console.log("Selected data:", selectedData);
+  useEffect(() => {
+    if (selectedData?.date) {
+      setDate(parseDate(selectedData.date));
+    }
+  }, [selectedData]);
 
   const handleSave = (data: any) => {
     console.log("Saqlangan ma'lumot:", data);
@@ -52,13 +55,13 @@ console.log("Selected data:", selectedData);
         Cancel
       </button>
 
-      <Balans />
+      <Balans userBalance={userBalance ? userBalance : null}/>
 
       <SelectMonth />
 
-      <Dashboard />
+      <Dashboard setTypesDashboard={setTypesDashboard} />
 
-      <Transactions />
+      <Transactions typesDashboard={typesDashboard} />
 
       <Cards
         openModal={() => setIsOpen(true)}

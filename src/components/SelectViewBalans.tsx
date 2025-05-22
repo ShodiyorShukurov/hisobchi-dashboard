@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 type SelectViewBalansProps = {
   setTypesDashboard?: (value: string) => void;
@@ -8,23 +9,24 @@ const SelectViewBalans = ({
   setTypesDashboard,
 }: SelectViewBalansProps) => {
   const [selected, setSelected] = useState('1');
+  const {t} = useTranslation();
 
   const typesData = [
-    { id: 1, name: 'Hammasi' },
-    { id: 2, name: 'Kirim' },
-    { id: 3, name: 'Chiqim' },
-    { id: 4, name: 'Qarzlar' },
+    { id: 1, name: t('balance.all'), value: 'all' },
+    { id: 2, name: t('balance.kirim'), value: 'income' },
+    { id: 3, name: t('balance.chiqim'), value: 'expenses' },
+    { id: 4, name: t('balance.qarz') , value: 'debts' },
   ];
 
   return (
     <ul className="flex justify-between items-center bg-[#F8F9FE] rounded-[16px] p-1">
       {typesData.map((item) => (
-        <>
+        <React.Fragment key={item.id}>
           <li
-            key={item.id}
+           
             onClick={() => {
               setSelected(item.id.toString());
-              setTypesDashboard && setTypesDashboard(item.name);
+              setTypesDashboard && setTypesDashboard(item.value);
             }}
             className={`px-[12px] text-[12px] font-bold ${
               selected == item.id.toString()
@@ -45,7 +47,7 @@ const SelectViewBalans = ({
               <path d="M0.5 0.5V10.5" stroke="#92929D" strokeLinecap="round" />
             </svg>
           )}
-        </>
+        </React.Fragment>
       ))}
 
       {/* <li

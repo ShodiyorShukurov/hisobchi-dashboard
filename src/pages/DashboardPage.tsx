@@ -9,17 +9,28 @@ import EditTransactionModal from '../components/EditModal';
 import DatePickerModal from '../components/DataPicker';
 import useDashboard from '../hooks/useDashboard';
 import { useParams } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 const DashboardPage = () => {
   const { id } = useParams();
 
-  const { selectedData, setSelectedData, typesDashboard, setTypesDashboard, userBalance } =
-    useDashboard(id ? { id } : { id: '' });
+  const {
+    selectedData,
+    setSelectedData,
+    typesDashboard,
+    setTypesDashboard,
+    userBalance,
+    userBalanceDashboard,
+    setChangeValue,
+  } = useDashboard(id ? { id } : { id: '' });
 
+  // DeleteModal
   const [isOpen, setIsOpen] = useState(false);
 
+  // EditTransactionModal
   const [isOpenEdit, setIsOpenEdit] = useState(false);
 
+  // DatePickerModal
   const [isDateOpen, setDateIsOpen] = useState(false);
 
   const parseDate = (dateString: string): Date | undefined => {
@@ -43,25 +54,32 @@ const DashboardPage = () => {
     console.log("Saqlangan ma'lumot:", data);
   };
 
+  const { t } = useTranslation();
+
   return (
     <section className="container pt-[20px] relative">
       <h1 className="text-[14px] font-bold text-center text-[#1F2024]">
-        Dashboard
+        {t('dashboard.title')}
       </h1>
       <button
         onClick={() => window.close()}
         className="text-[#006FFD] text-[12px] font-semibold absolute top-[21px]"
       >
-        Cancel
+        {t('dashboard.close')}
       </button>
 
-      <Balans userBalance={userBalance ? userBalance : null}/>
+      <Balans userBalance={userBalance ? userBalance : null} />
 
       <SelectMonth />
 
-      <Dashboard setTypesDashboard={setTypesDashboard} />
+      <Dashboard
+        setTypesDashboard={setTypesDashboard}
+        userBalanceDashboard={userBalanceDashboard}
+        setChangeValue={setChangeValue}
+        typesDashboard={typesDashboard}
+      />
 
-      <Transactions typesDashboard={typesDashboard} />
+      <Transactions typesDashboard={typesDashboard} userBalanceDashboard={userBalanceDashboard} />
 
       <Cards
         openModal={() => setIsOpen(true)}

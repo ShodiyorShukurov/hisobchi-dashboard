@@ -1,21 +1,25 @@
 import right from '../assets/right.svg';
 import left from '../assets/left.svg';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const SelectMonth = () => {
+
+  const {t} =useTranslation()
+
   const month = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
+    t('months.january'),
+    t('months.february'),
+    t('months.march'),
+    t('months.april'),
+    t('months.may'),
+    t('months.june'),
+    t('months.july'),
+    t('months.august'),
+    t('months.september'),
+    t('months.october'),
+    t('months.november'),
+    t('months.december'),
   ];
 
   const currentMonth = new Date().getMonth();

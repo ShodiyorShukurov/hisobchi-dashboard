@@ -1,0 +1,27 @@
+{
+    "dashboard": {
+        "title": "Dashboard",
+        "close": "Cancel",
+        "balance": "Balans"
+    },
+    "months": {
+        "january": "January",
+        "february": "February",
+        "march": "March",
+        "april": "April",
+        "may": "May",
+        "june": "June",
+        "july": "July",
+        "august": "August",
+        "september": "September",
+        "october": "October",
+        "november": "November",
+        "december": "December"
+    },
+    "balance": {
+        "all": "All",
+        "kirim": "Income",
+        "chiqim": "Expense",
+        "qarz": "Debt"
+    }
+}

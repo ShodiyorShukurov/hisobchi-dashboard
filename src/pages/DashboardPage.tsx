@@ -22,6 +22,8 @@ const DashboardPage = () => {
     userBalance,
     userBalanceDashboard,
     setChangeValue,
+    setSelectMonth,
+    selectMonth,
   } = useDashboard(id ? { id } : { id: '' });
 
   // DeleteModal
@@ -70,7 +72,7 @@ const DashboardPage = () => {
 
       <Balans userBalance={userBalance ? userBalance : null} />
 
-      <SelectMonth />
+      <SelectMonth selectMonth={selectMonth} setSelectMonth={setSelectMonth} />
 
       <Dashboard
         setTypesDashboard={setTypesDashboard}
@@ -79,7 +81,10 @@ const DashboardPage = () => {
         typesDashboard={typesDashboard}
       />
 
-      <Transactions typesDashboard={typesDashboard} userBalanceDashboard={userBalanceDashboard} />
+      <Transactions
+        typesDashboard={typesDashboard}
+        userBalanceDashboard={userBalanceDashboard}
+      />
 
       <Cards
         openModal={() => setIsOpen(true)}

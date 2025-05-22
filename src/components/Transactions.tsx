@@ -30,20 +30,28 @@ const Transactions = ({
             </div>
 
             <h2 className="mt-4 text-[#171725] text-[16px] font-semibold">
-              {Number(
-                userBalanceDashboard?.income?.data[1]?.total_amount
-              ).toLocaleString('ru-RU')}{' '}
+              {userBalanceDashboard?.income?.data[1]?.total_amount
+                ? Number(
+                    userBalanceDashboard?.income?.data[1]?.total_amount
+                  ).toLocaleString('ru-RU')
+                : ''}{' '}
               <span className="text-[#92929D] font-medium">
-                {userBalanceDashboard?.income?.data[1]?.currency}
+                {userBalanceDashboard?.income?.data[1]?.currency
+                  ? userBalanceDashboard?.income?.data[1]?.currency
+                  : ''}
               </span>
             </h2>
 
             <h2 className="mt-2 text-[#171725] text-[16px] font-semibold">
-              {Number(
-                userBalanceDashboard?.income?.data[0]?.total_amount
-              ).toLocaleString('ru-RU')}{' '}
+              {userBalanceDashboard?.income?.data[0]?.total_amount
+                ? Number(
+                    userBalanceDashboard?.income?.data[0]?.total_amount
+                  ).toLocaleString('ru-RU')
+                : ''}{' '}
               <span className="text-[#92929D] font-medium">
-                {userBalanceDashboard?.income?.data[0]?.currency}
+                {userBalanceDashboard?.income?.data[0]?.currency
+                  ? userBalanceDashboard?.income?.data[0]?.currency
+                  : ''}
               </span>
             </h2>
           </div>
@@ -58,18 +66,20 @@ const Transactions = ({
             </div>
 
             <h2 className="mt-4 text-[#171725] text-[16px] font-semibold">
-              {Number(
-                userBalanceDashboard?.expense?.date[1]?.total_amount
-              ).toLocaleString('ru-RU')}{' '}
+              {userBalanceDashboard?.expense?.date[1]?.total_amount
+                ? Number(
+                    userBalanceDashboard?.expense?.date[1]?.total_amount
+                  ).toLocaleString('ru-RU')
+                : ''}{' '}
               <span className="text-[#92929D] font-medium">
-                {userBalanceDashboard?.expense?.date[1]?.currency}
+                {userBalanceDashboard?.expense?.date[1]?.currency ? userBalanceDashboard?.expense?.date[1]?.currency : ""}
               </span>
             </h2>
 
             <h2 className="mt-2 text-[#171725] text-[16px] font-semibold">
-              {Number(
+              {userBalanceDashboard?.expense?.date[0]?.total_amount? Number(
                 userBalanceDashboard?.expense?.date[0]?.total_amount
-              ).toLocaleString('ru-RU')}{' '}
+              ).toLocaleString('ru-RU'):''}{' '}
               <span className="text-[#92929D] font-medium">
                 {userBalanceDashboard?.expense?.date[0]?.currency}
               </span>

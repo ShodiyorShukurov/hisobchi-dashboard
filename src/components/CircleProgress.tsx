@@ -136,7 +136,7 @@ const CircleProgress = ({
 
       {typesDashboard === 'all' || typesDashboard === 'debts' ? (
         <div className="flex items-center justify-between mt-[24px]">
-          <div className="text-[13px] leading-[13px] text-[#171725] flex items-center gap-1">
+          <div key={1} className="text-[13px] leading-[13px] text-[#171725] flex items-center gap-1">
             <div
               style={{ boxShadow: '0px 4px 4px 0px rgba(255, 255, 255, 0.25)' }}
               className="w-[14px] h-[14px] rounded-[5px] bg-[#47DDC2]"
@@ -144,7 +144,7 @@ const CircleProgress = ({
             {userBalanceDashboard?.income?.title}
           </div>
 
-          <div className="text-[13px] leading-[13px] text-[#171725] flex items-center gap-1">
+          <div key={2} className="text-[13px] leading-[13px] text-[#171725] flex items-center gap-1">
             <div
               style={{ boxShadow: '0px 4px 4px 0px rgba(255, 255, 255, 0.25)' }}
               className="w-[14px] h-[14px] rounded-[5px] bg-[#FF6393]"
@@ -155,8 +155,8 @@ const CircleProgress = ({
       ) : (
         <div className="flex items-center justify-between mt-[24px]">
           {chart.length > 0 &&
-            chart.map((item: IChartItem) => (
-              <div className="text-[13px] leading-[13px] text-[#171725] flex items-center gap-1">
+            chart.map((item: IChartItem, index: number) => (
+              <div key={index} className="text-[13px] leading-[13px] text-[#171725] flex items-center gap-1">
                 <div
                   style={{
                     boxShadow: '0px 4px 4px 0px rgba(255, 255, 255, 0.25)',

@@ -1,9 +1,13 @@
 import right from '../assets/right.svg';
 import left from '../assets/left.svg';
-import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
-const SelectMonth = () => {
+interface SelectMonthProps {
+  selectMonth: number;
+  setSelectMonth: React.Dispatch<React.SetStateAction<number>>;
+}
+
+const SelectMonth: React.FC<SelectMonthProps> = ({ selectMonth, setSelectMonth }) => {
 
   const {t} =useTranslation()
 
@@ -22,9 +26,6 @@ const SelectMonth = () => {
     t('months.december'),
   ];
 
-  const currentMonth = new Date().getMonth();
-
-  const [selectMonth, setSelectMonth] = useState(currentMonth);
 
   return (
     <div className="mt-[24px] flex items-center justify-between">

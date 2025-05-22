@@ -5,10 +5,13 @@ const useDashboard = ({ id }: { id: string }) => {
   const [selectedData, setSelectedData] = React.useState<any>(null);
   const [typesDashboard, setTypesDashboard] = React.useState<string>('all');
   const [userBalance, setUserBalance] = React.useState<IBalace[] | null>(null);
-  const [userBalanceDashboard, setUserBalanceDashboard] = React.useState<
-    IDashboard | null
-  >(null);
+  const [userBalanceDashboard, setUserBalanceDashboard] =
+    React.useState<IDashboard | null>(null);
   const [changeValue, setChangeValue] = React.useState<string>('UZS');
+
+  const currentMonth = new Date().getMonth();
+
+  const [selectMonth, setSelectMonth] = React.useState<number>(currentMonth);
 
   // Fetch user balance
   const getUserBalance = async () => {
@@ -39,7 +42,11 @@ const useDashboard = ({ id }: { id: string }) => {
       const res = await fetch(
         `${
           import.meta.env.VITE_API_URL
-        }/user/dashboard/chart/${id}?section=${typesDashboard}&year=2025&month=05&currency=${changeValue}`,
+        }/user/dashboard/chart/${id}?section=${typesDashboard}&year=2025&month=${
+          String(selectMonth).length == 2
+            ? selectMonth + 1
+            : '0' + String(selectMonth + 1)
+        }&currency=${changeValue}`,
         {
           method: 'GET',
           headers: {
@@ -64,7 +71,7 @@ const useDashboard = ({ id }: { id: string }) => {
 
   React.useEffect(() => {
     getUserBalanceDashboard();
-  }, [id, changeValue, typesDashboard]);
+  }, [id, changeValue, typesDashboard, selectMonth]);
 
   return {
     selectedData,
@@ -73,7 +80,9 @@ const useDashboard = ({ id }: { id: string }) => {
     setTypesDashboard,
     userBalance,
     userBalanceDashboard,
-    setChangeValue
+    setChangeValue,
+    setSelectMonth,
+    selectMonth,
   };
 };
 

@@ -23,5 +23,24 @@
         "kirim": "Income",
         "chiqim": "Expense",
         "qarz": "Debt"
-    }
+    },
+    "deleteModal": {
+        "title": "Delete",
+        "message": "Are you sure you want to delete this information?",
+        "delete": "Delete",
+        "cancel": "Cancel"
+    },
+    "editModal": {
+    "title": "Edit",
+    "category1": "Category",
+    "category2": "Details",
+    "category3": "Amount",
+    "category4": "Date",
+    "kirim": "Income",
+    "chiqim": "Expense",
+    "qarz": "Debt",
+    "save": "Save",
+    "cancel": "Cancel"
+}
+
 }

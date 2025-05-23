@@ -23,5 +23,23 @@
         "kirim": "Kirim",
         "chiqim": "Chiqim",
         "qarz": "Qarz"
+    },
+    "deleteModal": {
+        "title": "O'chirish",
+        "message": "Siz haqiqattan ham ushbu ma'lumotni o'chirmoqchimisiz",
+        "delete": "O'chirish",
+        "cancel": "Bekor qilish"
+    },
+    "editModal": {
+        "title": "Tahrirlash",
+        "category1": "Kategoriya",
+        "category2": "Tafsilot",
+        "category3": "Summa",
+        "category4": "Sana",
+        "kirim": "Kirim",
+        "chiqim": "Chiqim",
+        "qarz": "Qarz",
+        "save": "Saqlash",
+        "cancel": "Bekor qilish"
     }
 }

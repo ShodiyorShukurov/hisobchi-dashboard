@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import dateIcon from '../assets/date.svg';
+import { useTranslation } from 'react-i18next';
 
 type TransactionType = 'kirim' | 'chiqim' | 'qarz';
 
@@ -59,6 +60,8 @@ const EditTransactionModal = ({
     onClose();
   };
 
+  const {t} =useTranslation()
+
   return (
     <div
       className="fixed inset-0 bg-[#0000001F] flex items-center justify-center z-50 backdrop-blur-[2px]"
@@ -69,12 +72,12 @@ const EditTransactionModal = ({
         onClick={(e) => e.stopPropagation()}
       >
         <h2 className="text-[#171725] text-center font-extrabold text-[16px] mb-4">
-          Tahrirlash
+          {t('editModal.title')}
         </h2>
 
         {/* Kategoriya */}
         <label className="text-[#2F3036] text-[12px] font-bold mb-2 block">
-          Kategoriya:
+          {t('editModal.category1')}:
         </label>
         <select
           value={category}
@@ -90,7 +93,7 @@ const EditTransactionModal = ({
 
         {/* Tafsilot */}
         <label className="text-[#2F3036] text-[12px] font-bold mb-2 block">
-          Tafsilot:
+          {t('editModal.category2')}:
         </label>
         <textarea
           value={detail}
@@ -101,7 +104,7 @@ const EditTransactionModal = ({
 
         {/* Summa */}
         <label className="text-[#2F3036] text-[12px] font-bold mb-2 block">
-          Summa:
+          {t('editModal.category3')}:
         </label>
         <div className="relative mb-4">
           <input
@@ -124,7 +127,7 @@ const EditTransactionModal = ({
 
         {/* Sana */}
         <label className="text-[#2F3036] text-[12px] font-bold mb-2 block">
-          Sana:
+          {t('editModal.category4')}:
         </label>
         <div
           onClick={onDateClick}
@@ -153,7 +156,7 @@ const EditTransactionModal = ({
                 <div className="bg-[#fff] w-[3.5px] h-[3.5px] rounded-full"></div>
               )}
             </div>
-            Kirim
+            {t('editModal.kirim')}
           </div>
 
           <div
@@ -173,7 +176,7 @@ const EditTransactionModal = ({
                 <div className="bg-[#fff] w-[3.5px] h-[3.5px] rounded-full"></div>
               )}
             </div>
-            Chiqim
+            {t('editModal.chiqim')}
           </div>
 
           <div
@@ -193,7 +196,7 @@ const EditTransactionModal = ({
                 <div className="bg-[#fff] w-[3.5px] h-[3.5px] rounded-full"></div>
               )}
             </div>
-            Qarz
+            {t('editModal.qarz')}
           </div>
         </div>
 
@@ -202,13 +205,13 @@ const EditTransactionModal = ({
             onClick={onClose}
             className="w-full h-[40px] border-[1.5px] border-[#006FFD] text-[#006FFD] rounded-[12px] text-[12px] font-semibold"
           >
-            Bekor qilish
+            {t('editModal.cancel')}
           </button>
           <button
             onClick={handleSave}
             className="w-full h-[40px] bg-[#006FFD] text-white rounded-[12px] text-[12px] font-semibold"
           >
-            Saqlash
+            {t('editModal.save')}
           </button>
         </div>
       </div>

@@ -30,13 +30,6 @@ const CircleProgress = ({
     return item.income ? sum + amount : sum - amount;
   }, 0);
 
-  const uniqueTypes = [...new Set(chart.map((item) => item.category))];
-  const categoryColorMap: Record<string, string> = {};
-
-  uniqueTypes.forEach((type, index) => {
-    const hue = (index * 137.508) % 360; 
-    categoryColorMap[type] = `hsl(${hue}, 70%, 60%)`;
-  });
 
   const segments = chart.map((item: IChartItem) => ({
     value:
@@ -46,7 +39,7 @@ const CircleProgress = ({
         ? item.income
           ? '#47DDC2'
           : '#FF6393'
-        : categoryColorMap[item.category],
+        : item.color,
   }));
 
   let currentOffset = 0;
@@ -160,7 +153,7 @@ const CircleProgress = ({
                 <div
                   style={{
                     boxShadow: '0px 4px 4px 0px rgba(255, 255, 255, 0.25)',
-                    backgroundColor: categoryColorMap[item?.category],
+                    backgroundColor: item.color,
                   }}
                   className={`w-[14px] h-[14px] rounded-[5px]`}
                 />

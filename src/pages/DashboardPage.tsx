@@ -56,7 +56,15 @@ const DashboardPage = () => {
     console.log("Saqlangan ma'lumot:", data);
   };
 
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+
+  useEffect(() => {
+    i18n.changeLanguage(
+      userBalanceDashboard?.lang == 'ru'
+        ? 'ру'
+        : userBalanceDashboard?.lang ?? 'uz'
+    );
+  }, [userBalanceDashboard?.lang, i18n]);
 
   return (
     <section className="container pt-[20px] relative">

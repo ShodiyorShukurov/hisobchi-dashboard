@@ -12,6 +12,7 @@ export interface IChartItem {
   currency: string;
   total_amount: string;
   category: string;
+  color: string;
 }
 
 export interface IIncomeData {
